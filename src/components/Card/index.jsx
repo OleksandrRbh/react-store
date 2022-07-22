@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import { ReactComponent as IStar } from './../../img/icons/i-star.svg'
 
-class Card extends React.Component {
+export default class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,4 +37,4 @@ class Card extends React.Component {
     );
   }
 }
-export default Card
+
