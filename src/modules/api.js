@@ -22,3 +22,21 @@ export const fetchProducts = async (filters) => {
 
   return { products, totalPages }
 }
+
+export const fetchCategories = async () => {
+  const url = new URL('categories', API_URL)
+
+  const response = await fetch(url);
+  const categories = await response.json();
+
+  return categories
+}
+
+export const fetchBrands = async () => {
+  const url = new URL('brands', API_URL)
+
+  const response = await fetch(url);
+  const brands = await response.json();
+
+  return brands
+}

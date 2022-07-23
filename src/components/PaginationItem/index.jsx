@@ -1,4 +1,4 @@
-const PaginationItem = ({ itemIndex = 0, isActive = false }) => {
+const PaginationItem = ({ itemIndex = 0, isActive = false, onPageItemClick }) => {
 
   let classNames = 'pages__item pg-control'
   if (isActive) classNames += ' active'
@@ -8,7 +8,10 @@ const PaginationItem = ({ itemIndex = 0, isActive = false }) => {
       <span
         className={ classNames }
         data-page-index={ itemIndex }
-      >{itemIndex + 1}</span>
+        onClick={ () => onPageItemClick(itemIndex) }
+      >
+        {itemIndex + 1}
+      </span>
     </li>
   );
 }

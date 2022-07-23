@@ -1,8 +1,9 @@
 import { Component } from 'react'
-// import logo from './logo.svg';
 import './index.css';
 import CardsList from '../CardsList'
 import Pagination from '../Pagination'
+import SearchBox from '../SearchBox'
+import SideBar from '../SideBar'
 import { fetchProducts } from '../../modules/api'
 
 export default class App extends Component {
@@ -19,7 +20,8 @@ export default class App extends Component {
       category: [],  // ['monitors', 'laptops']
       brand: []
     },
-    totalPages: 10
+    totalPages: 10,
+    activePageIndex: 0
   }
 
   async loadData () {
@@ -27,12 +29,31 @@ export default class App extends Component {
     this.setState({ products, totalPages })
   }
 
+  changeFilters = (newFilters) => {
+    this.setState(({ filters }) => {
+      return {
+        filters: { ...filters, ...newFilters }
+      }
+    }, () => this.loadData())
+  }
+
+  onPageItemClick = (idx) => {
+    if (idx === this.state.activePageIndex) return
+    this.setState({ activePageIndex: idx })
+    this.changeFilters({ _page: idx + 1 })
+  }
+
+  onSearchChange = (query) => {
+    this.setState({ activePageIndex: 0 })
+    this.changeFilters({ _page: 1, q: query })
+  }
+
   componentDidMount () {
     this.loadData()
   }
 
   render () {
-    const { products } = this.state
+    const { products, totalPages, activePageIndex } = this.state
 
     return (
       <div className="page">
@@ -40,13 +61,19 @@ export default class App extends Component {
 
           <main className="main-container">
             <aside className="os-sidebar-container">
-
+              <SideBar />
             </aside>
             <section>
+              <SearchBox onSearchChange={ this.onSearchChange } />
+
               <CardsList products={ products } />
 
               <div className="os-pagination-container">
-                <Pagination totalPages={ 10 } activePageIndex={ 3 } />
+                <Pagination
+                  totalPages={ totalPages }
+                  activePageIndex={ activePageIndex }
+                  onPageItemClick={ this.onPageItemClick }
+                />
               </div>
             </section>
           </main>
