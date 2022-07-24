@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './index.css'
 import FiltersList from '../FiltersList'
+import DoubleSlider from '../DoubleSlider'
 import { fetchCategories, fetchBrands } from '../../modules/api'
 
 const SideBar = ({ onFilterChange, onResetFilters }) => {
@@ -51,6 +52,12 @@ const SideBar = ({ onFilterChange, onResetFilters }) => {
   return (
     <div className="os-sidebar">
       <div className="os-sidebar__filters">
+        <DoubleSlider
+          filterName={ 'price' }
+          min={ 0 }
+          max={ 85000 }
+          step={ 1 }
+        />
         <FiltersList
           filterName={ 'category' }
           filterData={ categories }
@@ -62,6 +69,12 @@ const SideBar = ({ onFilterChange, onResetFilters }) => {
           filterData={ brands }
           selectedFilters={ selectedFilters.brand }
           onFilterChange={ onHandleFilterChange }
+        />
+        <DoubleSlider
+          filterName={ 'rating' }
+          min={ 0 }
+          max={ 5 }
+          step={ 0.05 }
         />
       </div>
 

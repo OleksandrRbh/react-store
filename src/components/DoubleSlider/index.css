@@ -1,0 +1,28 @@
+.os-slider {
+  width: 100%;
+  padding: 20px 0;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 16px;
+}
+
+.os-slider__title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  text-transform: capitalize;
+}
+
+.range-slider {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.os-slider__output {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 14px;
+  color: black;
+}
