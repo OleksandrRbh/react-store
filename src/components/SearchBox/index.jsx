@@ -14,10 +14,15 @@ export default class SearchBox extends Component {
     }, () => this.onSearchChange())
   }
 
-
   onSearchChange = debounce(() => {
     this.props.onSearchChange(this.state.searchValue)
   }, 250);
+
+  resetSearch = () => {
+    this.setState({
+      searchValue: ''
+    })
+  }
 
   render () {
     return (

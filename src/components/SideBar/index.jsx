@@ -1,10 +1,20 @@
 import { useState, useEffect } from 'react'
 import './index.css'
+import FiltersList from '../FiltersList'
 import { fetchCategories, fetchBrands } from '../../modules/api'
 
-const SideBar = () => {
+const SideBar = ({ onFilterChange, onResetFilters }) => {
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
+
+  const [selectedFilters, setSelectedFilters] = useState({
+    price_gte: 0,
+    price_lte: 85000,
+    rating_gte: 0,
+    rating_lte: 5,
+    category: [],
+    brand: []
+  })
 
   const loadCategories = async () => {
     const resData = await fetchCategories()
@@ -16,6 +26,23 @@ const SideBar = () => {
     setBrands(resData)
   }
 
+  const onHandleFilterChange = (filterName, filterData) => {
+    setSelectedFilters({ ...selectedFilters, [filterName]: filterData })
+    onFilterChange(filterName, filterData)
+  }
+
+  const onResetClick = () => {
+    setSelectedFilters({
+      price_gte: 0,
+      price_lte: 85000,
+      rating_gte: 0,
+      rating_lte: 5,
+      category: [],
+      brand: []
+    })
+    onResetFilters()
+  }
+
   useEffect(() => {
     loadCategories()
     loadBrands()
@@ -24,10 +51,26 @@ const SideBar = () => {
   return (
     <div className="os-sidebar">
       <div className="os-sidebar__filters">
-
+        <FiltersList
+          filterName={ 'category' }
+          filterData={ categories }
+          selectedFilters={ selectedFilters.category }
+          onFilterChange={ onHandleFilterChange }
+        />
+        <FiltersList
+          filterName={ 'brand' }
+          filterData={ brands }
+          selectedFilters={ selectedFilters.brand }
+          onFilterChange={ onHandleFilterChange }
+        />
       </div>
 
-      <button className="os-btn os-sidebar__reset-btn">Clear all filters</button>
+      <button
+        className="os-btn os-sidebar__reset-btn"
+        onClick={ onResetClick }
+      >
+        Clear all filters
+      </button>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { Component, createRef } from 'react'
 import './index.css';
 import CardsList from '../CardsList'
 import Pagination from '../Pagination'
@@ -7,6 +7,7 @@ import SideBar from '../SideBar'
 import { fetchProducts } from '../../modules/api'
 
 export default class App extends Component {
+  searchElement = createRef()
   state = {
     products: [],
     filters: {
@@ -17,7 +18,7 @@ export default class App extends Component {
       price_lte: 85000,
       rating_gte: 0,
       rating_lte: 5,
-      category: [],  // ['monitors', 'laptops']
+      category: [],  // ['monitors', 'video_cards']
       brand: []
     },
     totalPages: 10,
@@ -48,6 +49,26 @@ export default class App extends Component {
     this.changeFilters({ _page: 1, q: query })
   }
 
+  onSideBarFilterChange = (filterName, filterData) => {
+    this.setState({ activePageIndex: 0 })
+    this.changeFilters({ _page: 1, [filterName]: filterData })
+  }
+
+  onResetFilters = () => {
+    this.searchElement.current.resetSearch()
+    this.changeFilters({
+      _page: 1,
+      _limit: 9,
+      q: '',
+      price_gte: 0,
+      price_lte: 85000,
+      rating_gte: 0,
+      rating_lte: 5,
+      category: [],
+      brand: []
+    })
+  }
+
   componentDidMount () {
     this.loadData()
   }
@@ -61,10 +82,16 @@ export default class App extends Component {
 
           <main className="main-container">
             <aside className="os-sidebar-container">
-              <SideBar />
+              <SideBar
+                onFilterChange={ this.onSideBarFilterChange }
+                onResetFilters={ this.onResetFilters }
+              />
             </aside>
             <section>
-              <SearchBox onSearchChange={ this.onSearchChange } />
+              <SearchBox
+                ref={ this.searchElement }
+                onSearchChange={ this.onSearchChange }
+              />
 
               <CardsList products={ products } />
 
