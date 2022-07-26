@@ -16,7 +16,7 @@ export default class FiltersList extends Component {
       resultArr = [...selectedFilters, val]
     }
 
-    onFilterChange(filterName, resultArr)
+    onFilterChange({ [filterName]: resultArr })
   }
 
   render () {

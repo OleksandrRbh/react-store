@@ -32,7 +32,12 @@ export default class Card extends React.Component {
             </div>
         </div>
 
-        <button className="card__action-button card__button" data-element="addToCart">Add To Cart</button>
+        <button
+          className="card__action-button card__button"
+          onClick={ () => { this.props.onAddProduct(this.state.product) } }
+        >
+          Add To Cart
+        </button>
       </div>
     );
   }

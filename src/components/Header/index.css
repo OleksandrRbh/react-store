@@ -1,0 +1,24 @@
+.os-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.os-page-title {
+  display: inline-block;
+  font-size: 35px;
+  line-height: 43px;
+  font-weight: 600;
+  color: var(--c-primary);
+}
+
+.os-cart-btn__icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  background-image: url("/src/img/icons/i-cart.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
