@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/react-store/static/css/main.d7feaa29.css",
+    "main.js": "/react-store/static/js/main.6c7de33b.js",
+    "static/js/787.42186139.chunk.js": "/react-store/static/js/787.42186139.chunk.js",
+    "static/media/i-cart.svg": "/react-store/static/media/i-cart.b8d6818b92aec0db8f7b.svg",
+    "static/media/i-next.svg": "/react-store/static/media/i-next.e83d6af3824a113a379cee0a794b600b.svg",
+    "static/media/i-prev.svg": "/react-store/static/media/i-prev.be51447ddb3b1b4f5778725b219f91bd.svg",
+    "index.html": "/react-store/index.html",
+    "static/media/i-star.svg": "/react-store/static/media/i-star.cfc1634cdd45e4d9706db766e0e9f24d.svg",
+    "static/media/i-close.svg": "/react-store/static/media/i-close.b34e0159c2a4b408ff34a3d3b30ceca7.svg",
+    "main.d7feaa29.css.map": "/react-store/static/css/main.d7feaa29.css.map",
+    "main.6c7de33b.js.map": "/react-store/static/js/main.6c7de33b.js.map",
+    "787.42186139.chunk.js.map": "/react-store/static/js/787.42186139.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d7feaa29.css",
+    "static/js/main.6c7de33b.js"
+  ]
+}
