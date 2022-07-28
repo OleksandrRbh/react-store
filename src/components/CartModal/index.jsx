@@ -12,6 +12,13 @@ const CartModal = ({ isCartVisible, onClose, cartProducts, onAddProduct, onRemov
     e.stopPropagation()
   }
 
+  const getTotalAmount = () => {
+    if (!cartProducts.length) return 0
+    return cartProducts.reduce((acc, cur) => {
+      return acc + cur.count * cur.price
+    }, 0)
+  }
+
   let classNames = 'os-cart'
   if (isCartVisible) classNames += ' os-cart--visible'
 
@@ -35,11 +42,18 @@ const CartModal = ({ isCartVisible, onClose, cartProducts, onAddProduct, onRemov
         </header>
         <main className="os-cart__main">
           <ul className="os-cart__list">
-            { cartProducts.map(item => <CartModalItem key={ item.id } product={ item } />) }
+            { cartProducts.map(item => (
+              <CartModalItem
+                key={ item.id }
+                product={ item }
+                onAddProduct={ onAddProduct }
+                onRemoveProduct={ onRemoveProduct }
+              />
+            )) }
           </ul>
           <footer className="os-cart__footer">
             <div className="os-cart__total">
-              Total: <span>234</span>
+              Total: <span>{ getTotalAmount() }</span>
             </div>
 
             <button className="os-btn">Order</button>
