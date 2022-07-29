@@ -19,7 +19,7 @@ const CartModalItem = ({ product, onAddProduct, onRemoveProduct }) => {
           onClick={ () => onAddProduct(product) }
         >+</button>
       </div>
-      <div className="product__price">{ product.price }</div>
+      <div className="product__price">{ product.price * product.count }</div>
     </li>
   )
 }
